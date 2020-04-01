@@ -127,7 +127,10 @@ Module.register('MMM-ProfileControl', {
   },
 
   notificationReceived: function(notification,payload) {
-    if(notification === "CHANGED_PROFILE"){
+    if(
+      (notification === "CHANGED_PROFILE") ||
+      (notification.startsWith("PROFILE_"))
+    ){
       this.sendSocketNotification(notification,payload)
     }
   },
