@@ -37,7 +37,7 @@ To use the module insert it in the config.js file. Here is an example:
 		},
 
 
-This results in two pages.
+This results contains two pages.
     The first one contains "pageOneEveryone" and "pageOneBirthdays"
     The second "pageTwoEveryone", "pageTwoFamily" and "pageTwoLadies"
 
@@ -49,3 +49,13 @@ This results in two pages.
 | showVerticalIndicator | If true an profile on page indicator will be displayed | boolean | true |
 | startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | true |
 | startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | true |
+
+## Supported Notifications ##
+| Notification | Payload | Description |
+| ------------ | ------- | ----------- |
+| PROFILE_SET_HORIZONTAL | The horizontal index | The number of the page to select (starting with 0) |
+| PROFILE_SET_VERTICAL | The vertical index | The number of the profile on the current page to select (starting with 0) |
+| PROFILE_INCREMENT_VERTICAL | nothing | Increment the profile number by one; if the end is already reached it will stay on this profile (or if configured start at 0) |
+| PROFILE_DECREMENT_VERTICAL | nothing | Decrement the profile number by one; if the beginning is already reached it will stay on this profile (or if configured start at the end) |
+| PROFILE_INCREMENT_HORIZONTAL | nothing | Increment the page number by one; if the end is already reached it will stay on this page (or if configured start at 0) |
+| PROFILE_DECREMENT_HORIZONTAL | nothing | Decrement the page number by one; if the beginning is already reached it will stay on this page (or if oconfigured start at the end) |
