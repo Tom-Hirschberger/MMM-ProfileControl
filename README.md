@@ -10,9 +10,9 @@ If you like the module displays an indicator of the pages and and/or an indicato
 This module is an add-on to MMM-ProfileSwitcher (https://github.com/tosti007/MMM-ProfileSwitcher). Follow the README of the module and install it first.
 
 ## Screenshots ##
-![alt text](https://github.com/Tom-Hirschberger/MMM-ProfileControl/blob/master/examples/ page_one-profile_two.png "Page One -> Profile Two")
+![alt text](https://github.com/Tom-Hirschberger/MMM-ProfileControl/blob/master/examples/page_one-profile_two.png "Page One -> Profile Two")
 
-![alt text](https://github.com/Tom-Hirschberger/MMM-ProfileControl/blob/master/examples/ page_two-profile_one.png "Page Two -> Profile One")
+![alt text](https://github.com/Tom-Hirschberger/MMM-ProfileControl/blob/master/examples/page_two-profile_one.png "Page Two -> Profile One")
 
 
 ## Installation
