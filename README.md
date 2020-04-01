@@ -36,10 +36,11 @@ To use the module insert it in the config.js file. Here is an example:
 			}
 		},
 
-
 This results contains two pages.
     The first one contains "pageOneEveryone" and "pageOneBirthdays"
     The second "pageTwoEveryone", "pageTwoFamily" and "pageTwoLadies"
+
+**Attention: Do not use profiles twice in the configuration!!!**
 
 
 | Option  | Description | Type | Default |
@@ -59,3 +60,4 @@ This results contains two pages.
 | PROFILE_DECREMENT_VERTICAL | nothing | Decrement the profile number by one; if the beginning is already reached it will stay on this profile (or if configured start at the end) |
 | PROFILE_INCREMENT_HORIZONTAL | nothing | Increment the page number by one; if the end is already reached it will stay on this page (or if configured start at 0) |
 | PROFILE_DECREMENT_HORIZONTAL | nothing | Decrement the page number by one; if the beginning is already reached it will stay on this page (or if oconfigured start at the end) |
+| CHANGED_PROFILE | from and to | this notification is send by MMM-ProfileSwitcher if the profile is changed; you can change the profile with any other module, too. Use the CURRENT_PROFILE notification as described in the documenation of MMM-ProfileSwitcher for this. The module then sends this CHANGED_PROFILE notifcation and we update the indicator |
