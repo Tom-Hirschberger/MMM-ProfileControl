@@ -7,6 +7,8 @@ It is possible to set the current vertical index or horizontal index by notifica
 
 If you like the module displays an indicator of the pages and and/or an indicator of the current profile.
 
+Additionally configureable notifications can be send each time a specific profile is selected.
+
 This module is an add-on to MMM-ProfileSwitcher (https://github.com/tosti007/MMM-ProfileSwitcher). Follow the README of the module and install it first.
 
 ## Screenshots ##
@@ -33,12 +35,28 @@ To use the module insert it in the config.js file. Here is an example:
 					['pageOneEveryone', 'pageOneBirthdays'],
 					['pageTwoEveryone', 'pageTwoFamily', 'pageTwoLadies']
 				],
+
+				notifications: {
+					'pageOneEveryone' : [
+						{
+							notification: 'HEY_THERE',
+							payload: {
+								nobody: 'will react'
+							}
+						},
+						{
+							notification: 'HEY_THERE2',
+						}
+					]
+				}
 			}
 		},
 
 This results contains two pages.
     The first one contains "pageOneEveryone" and "pageOneBirthdays"
     The second "pageTwoEveryone", "pageTwoFamily" and "pageTwoLadies"
+
+Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" and "HEY_THERE2" will be send.
 
 **Attention: Do not use profiles twice in the configuration!!!**
 
@@ -50,6 +68,7 @@ This results contains two pages.
 | showVerticalIndicator | If true an profile on page indicator will be displayed | boolean | true |
 | startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | true |
 | startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | true |
+| notifications | An map containing arrays of notifications that will be send each time the profile with the given key is send | Map | {} |
 
 ## Supported Notifications ##
 | Notification | Payload | Description |

@@ -6,6 +6,7 @@ Module.register('MMM-ProfileControl', {
    */
   defaults: {
     profiles: [[]],
+    notifications: {},
     showHorizontalIndicator: true,
     showVerticalIndicator: true,
     startAgainAtHorizontalEnd: true,
@@ -142,6 +143,12 @@ Module.register('MMM-ProfileControl', {
       this.curHorizontalProfileIndex = payload.horizontal
       this.curVerticalProfileIndex = payload.vertical
       this.updateDom()
+    } else if (notification === 'NOTIFICATION_AFTER_CHANGE'){
+      if(typeof payload.payload === 'undefined'){
+        this.sendNotification(payload.notification, null)
+      } else {
+        this.sendNotification(payload.notification, payload.payload)
+      }
     }
   },
 
