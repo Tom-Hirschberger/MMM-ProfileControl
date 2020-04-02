@@ -115,8 +115,6 @@ module.exports = NodeHelper.create({
         }
       }
 
-      console.log("Setting new indexes: "+self.curHorizontalProfileIndex+"/"+self.curVerticalProfileIndex)
-
       self.sendSocketNotification("CURRENT_PROFILE_INDEX",{horizontal: self.curHorizontalProfileIndex, vertical: self.curVerticalProfileIndex})
     }
   }
