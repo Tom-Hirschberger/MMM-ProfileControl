@@ -5,7 +5,7 @@ This module is based on the MMM-page-indicator (https://github.com/edward-shen/M
 The aim of this module is to provide a possibility to organize profiles into horizontal areas (like pages) and vertical ones (i.e. to set an profile within MMM-CalenderExt).
 It is possible to set the current vertical index or horizontal index by notifications. Additionally you can only decrement or increment these values with notifications.
 
-If you like the module displays an indicator of the pages and and/or an indicator of the current profile.
+If you like the module displays an indicator of the pages and and/or an indicator of the current profile. The icons which are displayed can be overridden by configuration options (all free Font-Awesome icons are supported).
 
 Additionally configureable notifications can be send each time a specific profile is selected.
 
@@ -35,6 +35,8 @@ To use the module insert it in the config.js file. Here is an example:
 					['pageOneEveryone', 'pageOneBirthdays'],
 					['pageTwoEveryone', 'pageTwoFamily', 'pageTwoLadies']
 				],
+
+				horizontalActiveIcon: 'fa-eye',
 
 				notifications: {
 					'pageOneEveryone' : [
@@ -66,9 +68,16 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | profiles | The profiles which should be switched | An array of arrays | [[]] |
 | showHorizontalIndicator | If true an page indicator will be displayed | boolean | true |
 | showVerticalIndicator | If true an profile on page indicator will be displayed | boolean | true |
-| startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | true |
-| startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | true |
+| startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | boolean | true |
+| startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | boolean | true |
 | notifications | An map containing arrays of notifications that will be send each time the profile with the given key is send | Map | {} |
+| horizontalActiveIcon | The name of the icon class of the current active page | String | 'fa-circle' |
+| horizontalInactiveIcon | The name of the icon class of the current inactive pages | String | 'fa-circle-thin' |
+| verticalActiveIcon | The name of the icon class of the current active profile | String | 'fa-circle' |
+| verticalInactiveIcon | The name of the icon class of the current inactive profiles | String | 'fa-circle-thin' |
+| separatorIcon | The name of the icon class of the separator of horizontal and vertical icons | String | 'fa-bullseye' |
+| iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
+
 
 ## Supported Notifications ##
 | Notification | Payload | Description |

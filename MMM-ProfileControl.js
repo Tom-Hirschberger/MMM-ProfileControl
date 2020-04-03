@@ -15,9 +15,12 @@ Module.register('MMM-ProfileControl', {
     verticalOverflowJumpToZero: false,
     zeroVerticalIndexOnHorziontalChange: false,
     zeroHorizontalIndexOnVertialChange: false,
-    activeBright: false,
-    inactiveDimmed: true,
-    inactiveHollow: true,
+    iconPrefix: 'indicator fa ',
+    horizontalActiveIcon: 'fa-circle',
+    horizontalInactiveIcon: 'fa-circle-thin',
+    verticalActiveIcon: 'fa-circle',
+    verticalInactiveIcon: 'fa-circle-thin',
+    seperatorIcon: 'fa-bullseye'
   },
 
   /**
@@ -47,22 +50,9 @@ Module.register('MMM-ProfileControl', {
         const circle = document.createElement('i');
   
         if (this.curHorizontalProfileIndex === i) {
-          circle.className = 'fa fa-circle indicator';
-          if (this.config.activeBright) {
-            circle.className += ' bright';
-          }
+          circle.className = this.config.iconPrefix + this.config.horizontalActiveIcon;
         } else {
-          circle.className = 'fa indicator';
-  
-          if (this.config.inactiveDimmed) {
-            circle.className += ' dimmed';
-          }
-  
-          if (this.config.inactiveHollow) {
-            circle.className += ' fa-circle-thin';
-          } else {
-            circle.className += ' fa-circle';
-          }
+          circle.className = this.config.iconPrefix + this.config.horizontalInactiveIcon;
         }
         wrapper.appendChild(circle);
   
@@ -83,7 +73,7 @@ Module.register('MMM-ProfileControl', {
     if(this.config.showVerticalIndicator){
       if(this.config.showHorizontalIndicator && this.config.profiles[this.curHorizontalProfileIndex].length > 0){
         const seperator = document.createElement('i')
-        seperator.className = 'fa fa-bullseye indicator'
+        seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
         wrapper.appendChild(seperator)
       }
 
@@ -91,22 +81,9 @@ Module.register('MMM-ProfileControl', {
         const circle = document.createElement('i');
   
         if (this.curVerticalProfileIndex === i) {
-          circle.className = 'fa fa-circle indicator';
-          if (this.config.activeBright) {
-            circle.className += ' bright';
-          }
+          circle.className = this.config.iconPrefix + this.config.verticalActiveIcon;
         } else {
-          circle.className = 'fa indicator';
-  
-          if (this.config.inactiveDimmed) {
-            circle.className += ' dimmed';
-          }
-  
-          if (this.config.inactiveHollow) {
-            circle.className += ' fa-circle-thin';
-          } else {
-            circle.className += ' fa-circle';
-          }
+          circle.className = this.config.iconPrefix + this.config.verticalInactiveIcon;
         }
         wrapper.appendChild(circle);
   
