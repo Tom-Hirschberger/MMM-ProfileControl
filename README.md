@@ -68,6 +68,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | profiles | The profiles which should be switched | An array of arrays | [[]] |
 | showHorizontalIndicator | If true an page indicator will be displayed | boolean | true |
 | showVerticalIndicator | If true an profile on page indicator will be displayed | boolean | true |
+| showSeparator | If true the separator icon will be added between horizontal and vertical indictor | boolean | true |
 | startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | boolean | true |
 | startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | boolean | true |
 | notifications | An map containing arrays of notifications that will be send each time the profile with the given key is send | Map | {} |

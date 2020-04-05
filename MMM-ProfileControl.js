@@ -8,6 +8,7 @@ Module.register('MMM-ProfileControl', {
     profiles: [[]],
     notifications: {},
     showHorizontalIndicator: true,
+    showSeparator: true,
     showVerticalIndicator: true,
     startAgainAtHorizontalEnd: true,
     startAgainAtVerticalEnd: true,
@@ -77,13 +78,18 @@ Module.register('MMM-ProfileControl', {
     if(this.config.showVerticalIndicator){
       const verticalWrapper = document.createElement('span')
         verticalWrapper.className = 'verticalWrapper'
-      if(this.config.showHorizontalIndicator && this.config.profiles[this.curHorizontalProfileIndex].length > 0){
-        const seperatorWrapper = document.createElement('span')
+      
+      if(
+          this.config.showSeparator && 
+          this.config.showHorizontalIndicator && 
+          (this.config.profiles[this.curHorizontalProfileIndex].length > 0)
+        ){
+          const seperatorWrapper = document.createElement('span')
           seperatorWrapper.className = 'separatorWrapper'
-        const seperator = document.createElement('i')
-        seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
-        seperatorWrapper.appendChild(seperator)
-        wrapper.appendChild(seperatorWrapper)
+          const seperator = document.createElement('i')
+          seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
+          seperatorWrapper.appendChild(seperator)
+          wrapper.appendChild(seperatorWrapper)
       }
 
       for (let i = 0; i < this.config.profiles[this.curHorizontalProfileIndex].length; i += 1) {
