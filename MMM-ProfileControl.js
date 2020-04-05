@@ -46,6 +46,8 @@ Module.register('MMM-ProfileControl', {
   getDom() {
     const wrapper = document.createElement('div');
     if(this.config.showHorizontalIndicator){
+      const horizontalWrapper = document.createElement('span')
+        horizontalWrapper.className='horizontalWrapper'
       for (let i = 0; i < this.config.profiles.length; i += 1) {
         const circle = document.createElement('i');
   
@@ -54,7 +56,7 @@ Module.register('MMM-ProfileControl', {
         } else {
           circle.className = this.config.iconPrefix + this.config.horizontalInactiveIcon;
         }
-        wrapper.appendChild(circle);
+        horizontalWrapper.appendChild(circle);
   
         const self = this;
   
@@ -68,13 +70,20 @@ Module.register('MMM-ProfileControl', {
           self.updateDom();
         };
       }
+
+      wrapper.appendChild(horizontalWrapper)
     }
 
     if(this.config.showVerticalIndicator){
+      const verticalWrapper = document.createElement('span')
+        verticalWrapper.className = 'verticalWrapper'
       if(this.config.showHorizontalIndicator && this.config.profiles[this.curHorizontalProfileIndex].length > 0){
+        const seperatorWrapper = document.createElement('span')
+          seperatorWrapper.className = 'separatorWrapper'
         const seperator = document.createElement('i')
         seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
-        wrapper.appendChild(seperator)
+        seperatorWrapper.appendChild(seperator)
+        wrapper.appendChild(seperatorWrapper)
       }
 
       for (let i = 0; i < this.config.profiles[this.curHorizontalProfileIndex].length; i += 1) {
@@ -85,7 +94,7 @@ Module.register('MMM-ProfileControl', {
         } else {
           circle.className = this.config.iconPrefix + this.config.verticalInactiveIcon;
         }
-        wrapper.appendChild(circle);
+        verticalWrapper.appendChild(circle);
   
         const self = this;
   
@@ -99,6 +108,8 @@ Module.register('MMM-ProfileControl', {
           self.updateDom();
         };
       }
+
+      wrapper.appendChild(verticalWrapper)
     }
 
     return wrapper;
