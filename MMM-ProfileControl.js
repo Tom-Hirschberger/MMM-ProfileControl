@@ -21,7 +21,8 @@ Module.register('MMM-ProfileControl', {
     horizontalInactiveIcon: 'fa-circle-thin',
     verticalActiveIcon: 'fa-circle',
     verticalInactiveIcon: 'fa-circle-thin',
-    seperatorIcon: 'fa-bullseye'
+    seperatorIcon: 'fa-bullseye',
+    noChangeDuringScreensave: true,
   },
 
   /**
@@ -38,7 +39,8 @@ Module.register('MMM-ProfileControl', {
     this.curHorizontalProfileIndex = 0;
     this.curVerticalProfileIndex = 0;
     Log.info("Starting module: " + this.name);
-    this.sendSocketNotification('CONFIG', this.config)
+    this.sendSocketNotification('CONFIG', this.config);
+    this.inScreensaveMode = false;
   },
 
   /**
@@ -122,11 +124,16 @@ Module.register('MMM-ProfileControl', {
   },
 
   notificationReceived: function(notification,payload) {
-    if(
-      (notification === "CHANGED_PROFILE") ||
-      (notification.startsWith("PROFILE_"))
-    ){
+    if(notification === "CHANGED_PROFILE"){
       this.sendSocketNotification(notification,payload)
+    } else if (notification.startsWith("PROFILE_")){
+      if(!this.inScreensaveMode || !this.config.noChangeDuringScreensave){
+        this.sendSocketNotification(notification,payload)
+      }
+    } else if(notification === 'SCREENSAVE_ENABLED'){
+      this.inScreensaveMode = true
+    } else if(notification === 'SCREENSAVE_DISABLED'){
+      this.inScreensaveMode = false
     }
   },
 

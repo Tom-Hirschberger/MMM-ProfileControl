@@ -78,6 +78,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | verticalInactiveIcon | The name of the icon class of the current inactive profiles | String | 'fa-circle-thin' |
 | separatorIcon | The name of the icon class of the separator of horizontal and vertical icons | String | 'fa-bullseye' |
 | iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
+| noChangeDuringScreensave | Do not change profiles during screensave; this is necessary for all persons using hide/show to realize screen blanking | boolean | false |
 
 
 ## Supported Notifications ##
@@ -90,3 +91,5 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | PROFILE_INCREMENT_HORIZONTAL | nothing | Increment the page number by one; if the end is already reached it will stay on this page (or if configured start at 0) |
 | PROFILE_DECREMENT_HORIZONTAL | nothing | Decrement the page number by one; if the beginning is already reached it will stay on this page (or if oconfigured start at the end) |
 | CHANGED_PROFILE | from and to | this notification is send by MMM-ProfileSwitcher if the profile is changed; you can change the profile with any other module, too. Use the CURRENT_PROFILE notification as described in the documenation of MMM-ProfileSwitcher for this. The module then sends this CHANGED_PROFILE notifcation and we update the indicator |
+| SCREENSAVE_ENABLED | nothing | This notification is send of the MMM-Screen-Powersave-Notification module if screensave mode is enabled |
+| SCREENSAVE_DISABLED | nothing | This notification is send of the MMM-Screen-Powersave-Notification module if screensave mode is disabled |
