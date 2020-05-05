@@ -98,7 +98,7 @@ module.exports = NodeHelper.create({
     } else if (notification === 'PROFILE_DECREMENT_HORIZONTAL'){
       self.calculateAndSendNewHorizontalProfile(self.curHorizontalProfileIndex + -1)
     } else if(notification === "CHANGED_PROFILE"){
-
+      
       for(var curProfileName in self.config.notifications){
         if(payload.to === curProfileName){
           curNotifications = self.config.notifications[curProfileName]
