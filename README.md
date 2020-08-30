@@ -79,6 +79,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | separatorIcon | The name of the icon class of the separator of horizontal and vertical icons | String | 'fa-bullseye' |
 | iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
 | noChangeDuringScreensave | Do not change profiles during screensave; this is necessary for all persons using hide/show to realize screen blanking | boolean | false |
+| hideDuringScreensave | Hide the profile indicators during screensave mode | boolean | false |
 
 
 ## Supported Notifications ##

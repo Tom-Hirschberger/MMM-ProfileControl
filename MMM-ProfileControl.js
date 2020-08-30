@@ -23,6 +23,7 @@ Module.register('MMM-ProfileControl', {
     verticalInactiveIcon: 'fa-circle-thin',
     seperatorIcon: 'fa-bullseye',
     noChangeDuringScreensave: true,
+    hideDuringScreensave: false,
   },
 
   /**
@@ -48,76 +49,78 @@ Module.register('MMM-ProfileControl', {
    */
   getDom() {
     const wrapper = document.createElement('div');
-    if(this.config.showHorizontalIndicator){
-      const horizontalWrapper = document.createElement('span')
-        horizontalWrapper.className='horizontalWrapper'
-      for (let i = 0; i < this.config.profiles.length; i += 1) {
-        const circle = document.createElement('i');
-  
-        if (this.curHorizontalProfileIndex === i) {
-          circle.className = this.config.iconPrefix + this.config.horizontalActiveIcon;
-        } else {
-          circle.className = this.config.iconPrefix + this.config.horizontalInactiveIcon;
+    if ((!this.inScreensaveMode) || (!this.config.hideDuringScreensave)){
+      if(this.config.showHorizontalIndicator){
+        const horizontalWrapper = document.createElement('span')
+          horizontalWrapper.className='horizontalWrapper'
+        for (let i = 0; i < this.config.profiles.length; i += 1) {
+          const circle = document.createElement('i');
+    
+          if (this.curHorizontalProfileIndex === i) {
+            circle.className = this.config.iconPrefix + this.config.horizontalActiveIcon;
+          } else {
+            circle.className = this.config.iconPrefix + this.config.horizontalInactiveIcon;
+          }
+          horizontalWrapper.appendChild(circle);
+    
+          const self = this;
+    
+          // Lets people change the page by clicking on the respective circle.
+          // So apparently this doesn't work if we don't call the last two methods,
+          // despite those methods being called in when calling sendNotification.
+          // This is likely a bug (because spamming a single button) causes rapid-
+          // fire page changing, but for most cases that shouldn't be a problem.
+          circle.onclick = () => {
+            self.sendSocketNotification('PROFILE_SET_HORIZONTAL', i);
+            self.updateDom();
+          };
         }
-        horizontalWrapper.appendChild(circle);
-  
-        const self = this;
-  
-        // Lets people change the page by clicking on the respective circle.
-        // So apparently this doesn't work if we don't call the last two methods,
-        // despite those methods being called in when calling sendNotification.
-        // This is likely a bug (because spamming a single button) causes rapid-
-        // fire page changing, but for most cases that shouldn't be a problem.
-        circle.onclick = () => {
-          self.sendSocketNotification('PROFILE_SET_HORIZONTAL', i);
-          self.updateDom();
-        };
+
+        wrapper.appendChild(horizontalWrapper)
       }
 
-      wrapper.appendChild(horizontalWrapper)
-    }
+      if(this.config.showVerticalIndicator){
+        const verticalWrapper = document.createElement('span')
+          verticalWrapper.className = 'verticalWrapper'
 
-    if(this.config.showVerticalIndicator){
-      const verticalWrapper = document.createElement('span')
-        verticalWrapper.className = 'verticalWrapper'
-      
-      if(
-          this.config.showSeparator && 
-          this.config.showHorizontalIndicator && 
-          (this.config.profiles[this.curHorizontalProfileIndex].length > 0)
-        ){
-          const seperatorWrapper = document.createElement('span')
-          seperatorWrapper.className = 'separatorWrapper'
-          const seperator = document.createElement('i')
-          seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
-          seperatorWrapper.appendChild(seperator)
-          wrapper.appendChild(seperatorWrapper)
-      }
-
-      for (let i = 0; i < this.config.profiles[this.curHorizontalProfileIndex].length; i += 1) {
-        const circle = document.createElement('i');
-  
-        if (this.curVerticalProfileIndex === i) {
-          circle.className = this.config.iconPrefix + this.config.verticalActiveIcon;
-        } else {
-          circle.className = this.config.iconPrefix + this.config.verticalInactiveIcon;
+        if(
+            this.config.showSeparator && 
+            this.config.showHorizontalIndicator && 
+            (this.config.profiles[this.curHorizontalProfileIndex].length > 0)
+          ){
+            const seperatorWrapper = document.createElement('span')
+            seperatorWrapper.className = 'separatorWrapper'
+            const seperator = document.createElement('i')
+            seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
+            seperatorWrapper.appendChild(seperator)
+            wrapper.appendChild(seperatorWrapper)
         }
-        verticalWrapper.appendChild(circle);
-  
-        const self = this;
-  
-        // Lets people change the page by clicking on the respective circle.
-        // So apparently this doesn't work if we don't call the last two methods,
-        // despite those methods being called in when calling sendNotification.
-        // This is likely a bug (because spamming a single button) causes rapid-
-        // fire page changing, but for most cases that shouldn't be a problem.
-        circle.onclick = () => {
-          self.sendSocketNotification('PROFILE_SET_VERTICAL', i);
-          self.updateDom();
-        };
-      }
 
-      wrapper.appendChild(verticalWrapper)
+        for (let i = 0; i < this.config.profiles[this.curHorizontalProfileIndex].length; i += 1) {
+          const circle = document.createElement('i');
+    
+          if (this.curVerticalProfileIndex === i) {
+            circle.className = this.config.iconPrefix + this.config.verticalActiveIcon;
+          } else {
+            circle.className = this.config.iconPrefix + this.config.verticalInactiveIcon;
+          }
+          verticalWrapper.appendChild(circle);
+    
+          const self = this;
+    
+          // Lets people change the page by clicking on the respective circle.
+          // So apparently this doesn't work if we don't call the last two methods,
+          // despite those methods being called in when calling sendNotification.
+          // This is likely a bug (because spamming a single button) causes rapid-
+          // fire page changing, but for most cases that shouldn't be a problem.
+          circle.onclick = () => {
+            self.sendSocketNotification('PROFILE_SET_VERTICAL', i);
+            self.updateDom();
+          };
+        }
+
+        wrapper.appendChild(verticalWrapper)
+      }
     }
 
     return wrapper;
@@ -131,9 +134,13 @@ Module.register('MMM-ProfileControl', {
         this.sendSocketNotification(notification,payload)
       }
     } else if(notification === 'SCREENSAVE_ENABLED'){
+      console.log("SCREENSAVE_ENABLED")
       this.inScreensaveMode = true
+      this.updateDom()
     } else if(notification === 'SCREENSAVE_DISABLED'){
+      console.log("SCREENSAVE_DISABLED")
       this.inScreensaveMode = false
+      this.updateDom()
     }
   },
 
