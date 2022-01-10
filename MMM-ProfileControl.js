@@ -24,6 +24,7 @@ Module.register('MMM-ProfileControl', {
     seperatorIcon: 'fa-bullseye',
     noChangeDuringScreensave: true,
     hideDuringScreensave: false,
+    sendPresenceNotificationOnAction: false
   },
 
   /**
@@ -158,6 +159,5 @@ Module.register('MMM-ProfileControl', {
         this.sendNotification(payload.notification, payload.payload)
       }
     }
-  },
-
+  }
 });

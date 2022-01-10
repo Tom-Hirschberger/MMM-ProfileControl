@@ -86,19 +86,36 @@ module.exports = NodeHelper.create({
       self.config = payload
       self.started = true
     } else if (notification === 'PROFILE_SET_HORIZONTAL'){
-      self.calculateAndSendNewHorizontalProfile(payload)    
+      self.calculateAndSendNewHorizontalProfile(payload)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if (notification === 'PROFILE_SET_VERTICAL'){
       self.calculateAndSendNewVerticalProfile(payload)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if (notification === 'PROFILE_INCREMENT_VERTICAL'){
       self.calculateAndSendNewVerticalProfile(self.curVerticalProfileIndex + 1)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if (notification === 'PROFILE_DECREMENT_VERTICAL'){
       self.calculateAndSendNewVerticalProfile(self.curVerticalProfileIndex - 1)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if (notification === 'PROFILE_INCREMENT_HORIZONTAL'){
       self.calculateAndSendNewHorizontalProfile(self.curHorizontalProfileIndex + 1)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if (notification === 'PROFILE_DECREMENT_HORIZONTAL'){
       self.calculateAndSendNewHorizontalProfile(self.curHorizontalProfileIndex + -1)
+      if (self.config.sendPresenceNotificationOnAction){
+        self.sendSocketNotification( "NOTIFICATION_AFTER_CHANGE",{notification: "USER_PRESENCE", payload: true})
+      }
     } else if(notification === "CHANGED_PROFILE"){
-      
       for(var curProfileName in self.config.notifications){
         if(payload.to === curProfileName){
           curNotifications = self.config.notifications[curProfileName]
@@ -125,7 +142,6 @@ module.exports = NodeHelper.create({
           break;
         }
       }
-
       self.sendSocketNotification("CURRENT_PROFILE_INDEX",{horizontal: self.curHorizontalProfileIndex, vertical: self.curVerticalProfileIndex})
     }
   }
