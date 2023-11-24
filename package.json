@@ -1,6 +1,6 @@
 {
   "name": "MMM-ProfileControl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A add-on to the MagicMirror² module MMM-ProfileSwitcher to realize pages and vertical profiles. Can be controlled either by touch or by notifications.",
   "main": "MMM-ProfileControl.js",
   "dependencies": {},
