@@ -72,6 +72,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | startAgainAtHorizontalEnd | If true the pages start again at the start if the end is reached; If false the display will stay on the last page | boolean | true |
 | startAgainAtVerticalEnd | If true the profiles will be rotated like the pages | boolean | true |
 | notifications | An map containing arrays of notifications that will be send each time the profile with the given key is send | Map | {} |
+| sendPresenceNotificationOnAction | Send a USER_PRESENCE notification (with payload true) if an profile change is triggered by this module | boolean | false |
 | horizontalActiveIcon | The name of the icon class of the current active page | String | 'fa-circle' |
 | horizontalInactiveIcon | The name of the icon class of the current inactive pages | String | 'fa-circle-thin' |
 | verticalActiveIcon | The name of the icon class of the current active profile | String | 'fa-circle' |
@@ -79,6 +80,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | separatorIcon | The name of the icon class of the separator of horizontal and vertical icons | String | 'fa-bullseye' |
 | iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
 | noChangeDuringScreensave | Do not change profiles during screensave; this is necessary for all persons using hide/show to realize screen blanking | boolean | false |
+| hideDuringScreensave | Hide the profile indicators during screensave mode | boolean | false |
 
 
 ## Supported Notifications ##

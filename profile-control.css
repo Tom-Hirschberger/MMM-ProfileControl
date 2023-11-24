@@ -1,8 +1,9 @@
 .MMM-ProfileControl {
-    margin-top: 0 !important;
+    z-index: 999;
 }
 
 .MMM-ProfileControl .indicator {
+    z-index: 1000;
     padding: 0 5px;
     margin: 0;
     font-size: 0.5em;

@@ -47,21 +47,32 @@ Module.register('MMM-ProfileControl', {
    * Render the cicles for each page, and highlighting the page we're on.
    */
   getDom() {
-    const wrapper = document.createElement('div');
-    if(this.config.showHorizontalIndicator){
-      const horizontalWrapper = document.createElement('span')
+    const self = this
+    let wrapper = document.createElement('div');
+    if(self.config.showHorizontalIndicator){
+      let horizontalWrapper = document.createElement('span')
         horizontalWrapper.className='horizontalWrapper'
-      for (let i = 0; i < this.config.profiles.length; i += 1) {
-        const circle = document.createElement('i');
-  
-        if (this.curHorizontalProfileIndex === i) {
-          circle.className = this.config.iconPrefix + this.config.horizontalActiveIcon;
+      for (let i = 0; i < self.config.profiles.length; i += 1) {
+        let circle = document.createElement('i');
+        
+        let circleClass = self.config.iconPrefix
+        if (self.curHorizontalProfileIndex === i) {
+          if ((Array.isArray(self.config.horizontalActiveIcon)) &&
+              (typeof self.config.horizontalActiveIcon[i] !== "undefined")){
+                circleClass += self.config.horizontalActiveIcon[i]    
+          } else {
+            circleClass += self.config.horizontalActiveIcon
+          }
         } else {
-          circle.className = this.config.iconPrefix + this.config.horizontalInactiveIcon;
+          if ((Array.isArray(self.config.horizontalInactiveIcon)) &&
+              (typeof self.config.horizontalInactiveIcon[i] !== "undefined")){
+                circleClass += self.config.horizontalInactiveIcon[i]    
+          } else {
+            circleClass += self.config.horizontalInactiveIcon
+          }
         }
+        circle.className =  circleClass
         horizontalWrapper.appendChild(circle);
-  
-        const self = this;
   
         // Lets people change the page by clicking on the respective circle.
         // So apparently this doesn't work if we don't call the last two methods,
@@ -77,34 +88,34 @@ Module.register('MMM-ProfileControl', {
       wrapper.appendChild(horizontalWrapper)
     }
 
-    if(this.config.showVerticalIndicator){
-      const verticalWrapper = document.createElement('span')
+    if(self.config.showVerticalIndicator){
+      let verticalWrapper = document.createElement('span')
         verticalWrapper.className = 'verticalWrapper'
       
       if(
-          this.config.showSeparator && 
-          this.config.showHorizontalIndicator && 
-          (this.config.profiles[this.curHorizontalProfileIndex].length > 0)
+          self.config.showSeparator && 
+          self.config.showHorizontalIndicator && 
+          (self.config.profiles[self.curHorizontalProfileIndex].length > 0)
         ){
-          const seperatorWrapper = document.createElement('span')
+          let seperatorWrapper = document.createElement('span')
           seperatorWrapper.className = 'separatorWrapper'
-          const seperator = document.createElement('i')
-          seperator.className = this.config.iconPrefix + this.config.seperatorIcon;
+          let seperator = document.createElement('i')
+          seperator.className = self.config.iconPrefix + self.config.seperatorIcon;
           seperatorWrapper.appendChild(seperator)
           wrapper.appendChild(seperatorWrapper)
       }
 
-      for (let i = 0; i < this.config.profiles[this.curHorizontalProfileIndex].length; i += 1) {
-        const circle = document.createElement('i');
+      for (let i = 0; i < self.config.profiles[self.curHorizontalProfileIndex].length; i += 1) {
+        let circle = document.createElement('i');
   
-        if (this.curVerticalProfileIndex === i) {
-          circle.className = this.config.iconPrefix + this.config.verticalActiveIcon;
+        let circleClass = self.config.iconPrefix
+        if (self.curVerticalProfileIndex === i) {
+          circleClass += self.config.verticalActiveIcon;
         } else {
-          circle.className = this.config.iconPrefix + this.config.verticalInactiveIcon;
+          circleClass += self.config.verticalInactiveIcon;
         }
+        circle.className =  circleClass
         verticalWrapper.appendChild(circle);
-  
-        const self = this;
   
         // Lets people change the page by clicking on the respective circle.
         // So apparently this doesn't work if we don't call the last two methods,

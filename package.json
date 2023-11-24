@@ -1,14 +1,20 @@
 {
   "name": "MMM-ProfileControl",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "A add-on to the MagicMirror² module MMM-ProfileSwitcher to realize pages and vertical profiles. Can be controlled either by touch or by notifications.",
   "main": "MMM-ProfileControl.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "MagicMirror",
+    "MM",
+    "Profiles",
+    "Pages",
+    "Touchable"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:Tom-Hirschberger/MMM-ProfileControl.git"
