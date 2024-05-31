@@ -81,7 +81,7 @@ Each time the profile "pageOneEvery" is selected the notifications "HEY_THERE" a
 | iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
 | noChangeDuringScreensave | Do not change profiles during screensave; this is necessary for all persons using hide/show to realize screen blanking | boolean | false |
 | hideDuringScreensave | Hide the profile indicators during screensave mode | boolean | false |
-
+| restoreVerticalIndexOnHorziontalChange | Either set a boolean (true or false) or a object containing a true value for the horizontal profile index you want the vertical profile to be restored changed back to this horizontal profile. i.e. {0: true, 2: true} restores the vertical index if changed to a horizontal profile with index 0 or 2. | boolean or object | false |
 
 ## Supported Notifications ##
 | Notification | Payload | Description |

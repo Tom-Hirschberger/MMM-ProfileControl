@@ -15,6 +15,7 @@ Module.register('MMM-ProfileControl', {
     horizontalOverflowJumpToZero: false,
     verticalOverflowJumpToZero: false,
     zeroVerticalIndexOnHorziontalChange: false,
+    restoreVerticalIndexOnHorziontalChange: false,
     zeroHorizontalIndexOnVertialChange: false,
     iconPrefix: 'indicator fa ',
     horizontalActiveIcon: 'fa-circle',
@@ -23,6 +24,7 @@ Module.register('MMM-ProfileControl', {
     verticalInactiveIcon: 'fa-circle-thin',
     seperatorIcon: 'fa-bullseye',
     noChangeDuringScreensave: true,
+    
   },
 
   /**
