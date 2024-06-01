@@ -87,6 +87,9 @@ The result of this example will be:
 | iconPrefix | The prefix of classes all icons get attached. Attention there needs to be a space character at the end | String | 'indicator fa ' |
 | noChangeDuringScreensave | Do not change profiles during screensave; this is necessary for all persons using hide/show to realize screen blanking | boolean | false |
 | hideDuringScreensave | Hide the profile indicators during screensave mode | boolean | false |
+| zeroVerticalIndexOnHorziontalChange | If the horizontal index (page) is changed the vertical profile index will be kept usually (or the last fitting one if the page does not have the same amount of vertical profiles). If you want the vertical profile index to be set to 0 on changes of the horizontal one set this option to true | boolean | false |
+| zeroHorizontalIndexOnVertialChange | If the vertical index (profile) is changed the horizontal profile index (page) will be kept usually. If you want the horizontal profile index to be set to 0 on changes of the vertical one set this option to true | boolean | true |
+| restoreVerticalIndexOnHorziontalChange | Either set a boolean (true or false) or a object containing a true value for the horizontal profile index you want the vertical profile to be restored for. i.e. {0: true, 2: true} restores the vertical index if changed to a horizontal profile with index 0 or 2. | boolean or object | false |
 
 ## Supported Notifications
 

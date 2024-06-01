@@ -11,6 +11,8 @@ module.exports = NodeHelper.create({
     this.started = false
     this.curHorizontalProfileIndex = 0
     this.curVerticalProfileIndex = 0
+    this.horizontalIndexPerVerticalIndex = {}
+
      /**
     * Modulo that also works with negative numbers.
     * @param {number} x The dividend
@@ -32,14 +34,21 @@ module.exports = NodeHelper.create({
       }
     }
 
-    if(self.config.zeroVerticalIndexOnHorziontalChange){
-      self.curVerticalProfileIndex = 0
+    let restoreIndex = self.config.restoreVerticalIndexOnHorziontalChange
+    if ( (restoreIndex === true) || ((typeof restoreIndex[curRealNewHorizontalIndex] !== "undefined") && (restoreIndex[curRealNewHorizontalIndex] === true))
+    ){
+      self.curVerticalProfileIndex = self.verticalIndexPerHorizontalIndex[curRealNewHorizontalIndex] || 0
+      self.verticalIndexPerHorizontalIndex[curRealNewHorizontalIndex] = self.curVerticalProfileIndex
     } else {
-      if(self.curVerticalProfileIndex >= self.config.profiles[curRealNewHorizontalIndex].length){
-        if(self.config.verticalOverflowJumpToZero){
-          self.curVerticalProfileIndex = 0 
-        } else {
-          self.curVerticalProfileIndex = self.config.profiles[curRealNewHorizontalIndex].length - 1  
+      if(self.config.zeroVerticalIndexOnHorziontalChange){
+        self.curVerticalProfileIndex = 0
+      } else {
+        if(self.curVerticalProfileIndex >= self.config.profiles[curRealNewHorizontalIndex].length){
+          if(self.config.verticalOverflowJumpToZero){
+            self.curVerticalProfileIndex = 0 
+          } else {
+            self.curVerticalProfileIndex = self.config.profiles[curRealNewHorizontalIndex].length - 1  
+          }
         }
       }
     }
@@ -118,7 +127,7 @@ module.exports = NodeHelper.create({
     } else if(notification === "CHANGED_PROFILE"){
       for(var curProfileName in self.config.notifications){
         if(payload.to === curProfileName){
-          curNotifications = self.config.notifications[curProfileName]
+          let curNotifications = self.config.notifications[curProfileName]
           for(var i = 0; i < curNotifications.length; i++){
             this.sendSocketNotification("NOTIFICATION_AFTER_CHANGE", curNotifications[i])
           }
@@ -135,6 +144,10 @@ module.exports = NodeHelper.create({
           {
             self.curHorizontalProfileIndex = i;
             self.curVerticalProfileIndex = j;
+            if (typeof self.verticalIndexPerHorizontalIndex === "undefined"){
+              self.verticalIndexPerHorizontalIndex = {}
+            }
+            self.verticalIndexPerHorizontalIndex[self.curHorizontalProfileIndex] = self.curVerticalProfileIndex
             break;
           }
         }
