@@ -90,7 +90,7 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function (notification, payload) {
     const self = this
-    if (self.config.debug){
+    if (self.started && self.config.debug){
       console.log(self.name + ': Received notification '+notification)
     }
     if (notification === 'CONFIG' && self.started === false) {
