@@ -5,6 +5,7 @@ Module.register('MMM-ProfileControl', {
    * implementation. This means 3 pages, and some default enabled styles.
    */
   defaults: {
+    debug: false,
     profiles: [[]],
     notifications: {},
     showHorizontalIndicator: true,
